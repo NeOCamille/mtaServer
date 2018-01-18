@@ -31,9 +31,13 @@ function loginHandler(username, password)
 	end
 end
 
+function triggerCommand(playerSource, commandName)
+	triggerClientEvent(playerSource, "onCommandCommand", playerSource)
+end
 
 addEvent("submitLogin", true)
 addEventHandler("submitLogin", root, loginHandler)
 
 addEventHandler("onPlayerJoin", getRootElement(), joinHandler)
 addCommandHandler("createvehicle", createVehicleForPlayer)
+addCommandHandler("commands", triggerCommand)

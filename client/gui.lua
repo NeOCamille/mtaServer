@@ -55,11 +55,45 @@ function clientSubmitLogin(button, state)
         else
 
             outputChatBox("Enter all fields")
-            
+
         end
     end 
 end 
 
+function createCommandWindow()
+
+    local sWidth, sHeight = guiGetScreenSize()
+    local width, height = 445, 445
+    local x = (sWidth / 2) - (width / 2)
+    local y = (sHeight / 2) - (height / 2)
+
+    commandWindow = guiCreateWindow(x, y, width, height, "Commands", false)
+
+    guiWindowSetMovable(commandWindow, false)
+    guiWindowSetSizable(commandWindow, false)
+
+    commandWindowButton = guiCreateButton(137, 394, 158, 37, "OK", false, commandWindow)
+
+    commandWindowText = guiCreateLabel(10, 25, 425, 359, [[
+
+    /createvehicle
+
+    ]], false, commandWindow)
+
+    guiLabelSetHorizontalAlign(commandWindowText, "center", true)
+
+    guiSetVisible(commandWindow, true)
+    showCursor(true)
+    guiSetInputEnabled(true)
+
+    addEventHandler("onClientGUIClick", commandWindowButton, removeGUI, false)
+end
+
+function removeGUI()
+    guiSetVisible(commandWindow, false)
+    showCursor(false)
+    guiSetInputEnabled(false)
+end
 
 addEventHandler("onClientResourceStart", getResourceRootElement(),
     function ()
@@ -79,5 +113,7 @@ addEventHandler("onClientResourceStart", getResourceRootElement(),
     end
 )
 
+addEvent("onCommandCommand", true)
+addEventHandler("onCommandCommand", localPlayer, createCommandWindow)
 
 
