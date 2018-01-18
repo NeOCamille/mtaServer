@@ -1,7 +1,5 @@
 function createLoginWindow()
 
-    outputChatBox("createLoginWindow is called")
-
     local x = 0.375
     local y = 0.375
     local width = 0.25
