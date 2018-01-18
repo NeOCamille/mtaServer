@@ -1,0 +1,5 @@
+<meta>
+     <info author="YourName" type="gamemode" name="Camille" description="My first MTA server" />
+     <script src="script.lua" />
+     <script src="client/gui.lua" type="client" />
+</meta>
