@@ -34,7 +34,32 @@ function createLoginWindow()
 
     guiSetVisible(windowForLogin, false)
 
+
+    addEventHandler("onClientGUIClick", loginButton, clientSubmitLogin, false)
 end
+
+function clientSubmitLogin(button, state)
+    
+    if button == "left" and state == "up" then
+        local username = guiGetText(containerUser)
+        local password = guiGetText(containerPass)
+
+        if username and password then
+
+            triggerServerEvent("submitLogin", getRootElement(), username, password)
+
+            guiSetInputEnabled(false)
+            guiSetVisible(windowForLogin, false)
+            showCursor(false)
+
+        else
+
+            outputChatBox("Enter all fields")
+            
+        end
+    end 
+end 
+
 
 addEventHandler("onClientResourceStart", getResourceRootElement(),
     function ()
@@ -53,3 +78,6 @@ addEventHandler("onClientResourceStart", getResourceRootElement(),
 
     end
 )
+
+
+

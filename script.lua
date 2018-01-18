@@ -16,8 +16,24 @@ function createVehicleForPlayer(thePlayer, command, vehicleModel)
 	end	
 end
 
+function loginHandler(username, password)
+
+	if username == "user" and password == "apple" then
+
+		if (client) then
+			spawnPlayer(client, 1959.55, -1714.46, 20)
+			fadeCamera(client, true)
+			setCameraTarget(client, client)
+			outputChatBox("LOGGED IN")
+		end
+	else
+		outputChatBox("INVALIDZ")
+	end
+end
 
 
+addEvent("submitLogin", true)
+addEventHandler("submitLogin", root, loginHandler)
 
 addEventHandler("onPlayerJoin", getRootElement(), joinHandler)
 addCommandHandler("createvehicle", createVehicleForPlayer)
